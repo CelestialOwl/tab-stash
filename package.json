@@ -1,0 +1,22 @@
+{
+  "name": "extention",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && cpx \"manifest.json\" dist/ && cpx \"popup.html\" dist/ && cpx icons dist/ && cpx \"tsconfig.json\" dist",
+    "watch": "tsc -w",
+    "start": "web-ext run --source-dir dist --devtools"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/firefox-webext-browser": "^120.0.4",
+    "typescript": "^5.6.3",
+    "undici": "^6.20.1",
+    "web-ext": "^8.3.0"
+  },
+  "type": "module"
+}
