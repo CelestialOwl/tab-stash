@@ -1,4 +1,9 @@
 import { displayImageFromBase64 } from "./utils/images";
+console.log("hello");
+
+const closeTab = (id: number) => {
+  browser.tabs.remove(id);
+};
 
 async function listTabs() {
   const tabs = await browser.tabs.query({});
@@ -6,27 +11,38 @@ async function listTabs() {
   console.log(tabs);
 
   for (let i of tabs) {
-    const liEl = document.createElement("li");
-    liEl.innerText = i.title || "";
-
+    console.log(i);
     const onCaptured = (imageUri: string) => {
+      const liEl = document.createElement("li");
+      const imgEl = document.createElement("img");
+      const closeButton = document.createElement("button");
+      const innerDiv = document.createElement("div");
+      closeButton.addEventListener("click", () => {
+        if (i.id) {
+          closeTab(i.id);
+        }
+      });
+      closeButton.innerHTML = "c";
+      closeButton.style.backgroundColor = "red";
+      liEl.innerText = i.title || "";
       const base64 = imageUri.split(",")[1];
       const blob = displayImageFromBase64(base64, "image/png");
-      const imgEl = document.createElement("img");
       imgEl.src = blob;
-      imgEl.height = 300;
-      imgEl.width = 300;
+      imgEl.height = 150;
+      imgEl.width = 200;
+      innerDiv?.appendChild(liEl);
+      innerDiv.appendChild(closeButton);
+      tabEl?.appendChild(innerDiv);
       tabEl?.appendChild(imgEl);
+
       return blob;
     };
 
     browser.tabs
       .captureTab(i.id || 1)
-      .then(onCaptured, () => "something went wrong");
+      .then(onCaptured.bind(window), () => "something went wrong");
     // console.log(captured, error);
     // imgEl.src =
-
-    tabEl?.appendChild(liEl);
   }
 
   console.log(tabs);

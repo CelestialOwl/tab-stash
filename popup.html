@@ -4,8 +4,19 @@
     <title>Tabulus</title>
   </head>
   <body>
-    <h1>Tabs listing</h1>
+    <div style="display: flex; justify-content: space-between">
+      <h1>Tabs listing</h1>
+      <button onclick="openNewTab()">T</button>
+    </div>
     <ul id="tabs"></ul>
   </body>
+  <script defer>
+    function openNewTab() {
+      console.log("hello");
+      const url = browser.runtime.getURL("newtab.html");
+      console.log(url);
+      browser.tabs.create({ url });
+    }
+  </script>
   <!-- <script src="./bundle.js"></script> -->
 </html>

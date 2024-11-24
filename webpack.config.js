@@ -39,13 +39,14 @@ module.exports = {
   ],
   devtool: "source-map",
   mode: "development",
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    hot: true,
-    devMiddleware: {
-      writeToDisk: true,
-    },
-  },
+  watch: true,
+  // devServer: {
+  //   static: {
+  //     directory: path.join(__dirname, "dist"),
+  //   },
+  //   hot: true,
+  //   devMiddleware: {
+  //     writeToDisk: true,
+  //   },
+  // },
 };

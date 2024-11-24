@@ -9,7 +9,7 @@
     "copy": "cpx \"manifest.json\" dist/ && cpx \"popup.html\" dist/ && cpx icons dist/ && cpx \"tsconfig.json\" dist",
     "watch": "tsc -w",
     "start": "web-ext run --source-dir dist --devtools",
-    "webbuild": "webpack --config webpack.config.js ",
+    "webbuild": "webpack --config webpack.config.js --watch",
     "dev": "webpack serve --config webpack.config.js --open"
   },
   "keywords": [],
